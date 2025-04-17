@@ -6,6 +6,7 @@ import checkValidData from '../utils/validation'
 const Login = () => {
 
   const[isSignIn, setIsSignIn] = useState(true)
+  const[errorMessage, setErrorMessage] = useState(null)
 
   const email = useRef(null);
   const password = useRef(null);
@@ -18,13 +19,11 @@ const Login = () => {
   const handleButtonClick = () =>{
    
      // checkValidData()
-     console.log(email.current.value)
-     console.log(password.current.value)
+    
 
      const msg = checkValidData(email.current.value,password.current.value)
      
-     if(msg == null) return console.log( "sucessfull")
-     console.log(msg)
+    setErrorMessage(msg)
     
      
   }
@@ -47,10 +46,14 @@ const Login = () => {
        <input type="text" placeholder='Full Name' className='my-3 p-2 bg-gray-600 rounded-xs w-full'/>}
 
      <input
-     ref={email} type="Email" placeholder='Email Address' className='my-3 p-2 bg-gray-600 rounded-xs w-full'/>
+     ref={email} type="Email" placeholder='Email Address' required className='my-3 p-2 bg-gray-600 rounded-xs w-full'/>
+
+     { errorMessage === "Email is not valid"? <p className='text-red-600'>{errorMessage}</p>:null }
 
       <input 
-      ref={password} type="password" placeholder='Password' className='my-3 p-2 bg-gray-600 rounded-xs w-full' />
+      ref={password} type="password" placeholder='Password' required className='my-3 p-2 bg-gray-600 rounded-xs w-full' />
+
+     { errorMessage === "Password is not valid"? <p className='text-red-600'>{errorMessage}</p>:null }
 
       <button className='p-2 my-3 bg-red-700 rounded-xs  w-full cursor-pointer' onClick={handleButtonClick}>{isSignIn? "Sign In" : "Sign Up"}</button>
 

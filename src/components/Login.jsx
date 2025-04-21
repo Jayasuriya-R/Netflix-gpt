@@ -1,12 +1,19 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import checkValidData from '../utils/validation'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../utils/firebase'
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
+
 
 //rafce - react arrow func component export
 const Login = () => {
 
   const[isSignIn, setIsSignIn] = useState(true)
   const[errorMessage, setErrorMessage] = useState(null)
+  const navigate = useNavigate()
 
   const email = useRef(null);
   const password = useRef(null);
@@ -19,11 +26,47 @@ const Login = () => {
   const handleButtonClick = () =>{
    
      // checkValidData()
-    
-
      const msg = checkValidData(email.current.value,password.current.value)
-     
-    setErrorMessage(msg)
+    setErrorMessage(msg);
+
+    if(msg) return
+
+
+    if(!isSignIn){
+      //signup form 
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    navigate("/browse");
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    //setErrorMessage(errorMessage);
+    // ..
+  });
+       
+    }else{
+    
+      //signin form
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    //console.log(user)
+    navigate("/browse");
+    
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    setErrorMessage(errorMessage);
+  });
+
+    }
     
      
   }
@@ -48,13 +91,16 @@ const Login = () => {
      <input
      ref={email} type="Email" placeholder='Email Address' required className='my-3 p-2 bg-gray-600 rounded-xs w-full'/>
 
-     { errorMessage === "Email is not valid"? <p className='text-red-600'>{errorMessage}</p>:null }
+{ errorMessage?.includes('Email')&& (
+  <p className="text-red-600">{errorMessage}</p>
+)}
 
       <input 
       ref={password} type="password" placeholder='Password' required className='my-3 p-2 bg-gray-600 rounded-xs w-full' />
 
-     { errorMessage === "Password is not valid"? <p className='text-red-600'>{errorMessage}</p>:null }
-
+{ (errorMessage?.includes('Password') || errorMessage?.includes('auth/invalid-credential')) && (
+  <p className="text-red-600">{errorMessage}</p>
+)}
       <button className='p-2 my-3 bg-red-700 rounded-xs  w-full cursor-pointer' onClick={handleButtonClick}>{isSignIn? "Sign In" : "Sign Up"}</button>
 
       <p className='py-4 text-xs font-bold cursor-pointer' onClick={toggelSignInForm}>{isSignIn? "New to Netflix?  Sign Up Now." : "Already Registered User? Sign In"} </p>

@@ -16,6 +16,7 @@ If you are developing a production application, we recommend using TypeScript an
 //features
 -Login page
   - signin/singnup
+  - form validation
 -Browse (after authentictaion)
  - Header
  - main movie

@@ -12,7 +12,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 const Login = () => {
 
   const[isSignIn, setIsSignIn] = useState(true)
-  const[errorMessage, setErrorMessage] = useState(null)
+  const[errorMessage, setErrorMessage] = useState("")
   const navigate = useNavigate()
 
   const email = useRef(null);
@@ -48,7 +48,8 @@ const Login = () => {
     // ..
   });
        
-    }else{
+    }
+    else{
     
       //signin form
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)

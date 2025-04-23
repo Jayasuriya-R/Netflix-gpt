@@ -8,13 +8,13 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from '../utils/userSlice'
+import { netflixBg } from "../utils/constant";
 
 
 //rafce - react arrow func component export
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
   const dispatch = useDispatch()
   
 
@@ -51,7 +51,7 @@ const Login = () => {
             
             const{uid,email,displayName} = auth.currentUser;
             dispatch(addUser({uid:uid,email:email,displayName:displayName}));
-            navigate("/browse")
+            
               // ...
             })
             .catch((error) => {
@@ -78,10 +78,6 @@ const Login = () => {
           //console.log(user)
           const { uid, email, displayName } = user;
           dispatch(addUser({ uid, email, displayName }));
-      
-          
-          navigate("/browse");
-
           // ...
         })
         .catch((error) => {
@@ -98,7 +94,7 @@ const Login = () => {
 
       <div className="absolute ">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/fa4630b1-ca1e-4788-94a9-eccef9f7af86/web/IN-en-20250407-TRIFECTA-perspective_43f6a235-9f3d-47ef-87e0-46185ab6a7e0_small.jpg"
+          src={netflixBg}
           alt="logo"
         />
       </div>

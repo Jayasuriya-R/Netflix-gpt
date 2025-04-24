@@ -64,7 +64,7 @@ const Header = () => {
 
       {signOutbtn && (
         <button
-          className="absolute right-2 top-18 bg-black border-2 p-2 border-orange-500 rounded-3xl text-white font-bold hover:bg-orange-500 hover:text-black cursor-pointer z-10"
+          className="absolute right-2 top-18 bg-black border-2 p-2 border-orange-500 rounded-[5px] text-white font-bold hover:bg-orange-500 hover:text-black cursor-pointer z-10"
           onClick={handleSignout}
         >
           Sign Out

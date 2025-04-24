@@ -14,6 +14,9 @@ If you are developing a production application, we recommend using TypeScript an
 //create signup in firebase.
 //implemented sign using firebase api.
 //created redux store.
+//Bugfix: sign up user displayname.
+//bugfix: navigation issue.
+//Get data from TMDB now playing API.
 
 //features
 -Login page

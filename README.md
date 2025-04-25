@@ -18,6 +18,15 @@ If you are developing a production application, we recommend using TypeScript an
 //bugfix: navigation issue.
 //Get data from TMDB now playing API.
 
+//browse page
+ - MainContainer
+    - videobackground
+    - video title
+ - Secondarycontainer
+    - MovieList *n
+       - cards * n
+
+
 //features
 -Login page
   - signin/singnup

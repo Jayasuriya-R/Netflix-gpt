@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "../Assets/images.png";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,17 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { netflixLogo } from "../utils/constant";
+import { toggleGptSearch } from "../utils/gptSlice";
+import { Support_Language } from "../utils/constant";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const [signOutbtn, setSignOutbtn] = useState(false);
   const user = useSelector((store) => store.user);
+  const gptBtn = useSelector(store => store.gpt.showGptSearch)
   const dispatch = useDispatch();
+  
 
   const handleSignout = () => {
     signOut(auth)
@@ -42,6 +47,14 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleGptSearch = () => {
+    dispatch(toggleGptSearch());
+  };
+
+  const handleChangeLang = (e)=>{
+    dispatch(changeLanguage(e.target.value))
+  }
+
   return (
     <>
       <div className="absolute px-8 w-screen py-2 bg-gradient-to-b  from-black z-10 flex justify-between items-center">
@@ -49,6 +62,22 @@ const Header = () => {
 
         {user && (
           <div className="flex items-center gap-2">
+            {
+              gptBtn &&
+            <select className="bg-gray-900 text-white p-2  rounded-xs cursor-pointer"  onChange={handleChangeLang}>
+              {
+                 Support_Language.map((ln)=>{
+                   return <option key={ln.identifier} value={ln.identifier}>{ln.name}</option>
+                 })
+              }
+            </select>
+}
+            <button
+              className="px-4 py-2 m-2 bg-purple-800 text-white font-bold rounded-lg cursor-pointer"
+              onClick={handleGptSearch}
+            >
+             {gptBtn ?"Back to movies": "GPT-Search" }
+            </button>
             <p className="text-white font-bold text-2xl">
               Hi {user?.displayName} 🙋‍♀️
             </p>

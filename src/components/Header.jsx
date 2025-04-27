@@ -76,7 +76,7 @@ const Header = () => {
               className="px-4 py-2 m-2 bg-purple-800 text-white font-bold rounded-lg cursor-pointer"
               onClick={handleGptSearch}
             >
-             {gptBtn ?"Back to movies": "GPT-Search" }
+             {gptBtn ?"Back to movies": " GPT-Search" }
             </button>
             <p className="text-white font-bold text-2xl">
               Hi {user?.displayName} 🙋‍♀️

@@ -16,8 +16,8 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      <MainConatiner/>
-      <SecondaryConatiner/>
+      <MainConatiner />
+      <SecondaryConatiner />
     </div>
   );
 };

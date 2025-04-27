@@ -50,7 +50,7 @@ const Header = () => {
         {user && (
           <div className="flex items-center gap-2">
             <p className="text-white font-bold text-2xl">
-              Hi {user?.displayName} 🙋‍♂️
+              Hi {user?.displayName} 🙋‍♀️
             </p>
             <img
               className="h-10 w-10 mr-4 rounded-full cursor-pointer"

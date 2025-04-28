@@ -23,3 +23,5 @@ export const API_Options = {
     identifier:"spanish",name:'Spanish'
   },
 ]
+
+export const API_KEY = "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"; 

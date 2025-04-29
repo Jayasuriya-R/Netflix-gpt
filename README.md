@@ -17,6 +17,7 @@ If you are developing a production application, we recommend using TypeScript an
 //Bugfix: sign up user displayname.
 //bugfix: navigation issue.
 //Get data from TMDB now playing API.
+//Multi-language support in our app.
 
 //browse page
  - MainContainer

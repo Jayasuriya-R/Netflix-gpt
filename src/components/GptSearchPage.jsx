@@ -1,13 +1,13 @@
 import React from "react";
 import GptMovieSuggestion from "./GptMovieSuggestion";
 import GptSearchBar from "./GptSearchBar";
-import { netflixBg } from "../utils/constant";
+import logo from "../Assets/Gpt-bg.png";
 
 const GptSearchPage = () => {
   return (
     <div>
       <div className="fixed -z-10">
-        <img src={netflixBg} alt="logo" />
+        <img src={logo} alt="logo" />
       </div>
       <GptSearchBar />
      <GptMovieSuggestion/>

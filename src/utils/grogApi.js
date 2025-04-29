@@ -1,4 +1,3 @@
-// Get it free from groq.com
 import { API_KEY } from "./constant";
 async function getMovieRecommendations() {
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
@@ -22,5 +21,3 @@ async function getMovieRecommendations() {
 }
 
 export default getMovieRecommendations;
-
-// getMovieRecommendations();

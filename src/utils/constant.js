@@ -6,7 +6,7 @@ export const API_Options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOTAwNmYxMGIyZGE3MTI0ZTZmZDFjMGQ2OTQ1ZDQ1YSIsIm5iZiI6MTc0NTQxNDI0MS44MzUsInN1YiI6IjY4MDhlODYxNmUxYTc2OWU4MWVlZmY3ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xE377FRUr476G33P8HjKFGHEzYyAQ4dQCPhSpA54OT4'
+      Authorization: 'Bearer '+import.meta.env.VITE_TMDB_KEY
     }
   };
 
@@ -24,4 +24,5 @@ export const API_Options = {
   },
 ]
 
-export const API_KEY = "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"; 
+export const API_KEY = import.meta.env.VITE_API_KEY;
+ 

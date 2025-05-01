@@ -87,23 +87,24 @@ const Header = () => {
               Hi {user?.displayName} 🙋
             </p>
             <img
-              className="h-10 w-10 mr-4 rounded-full cursor-pointer"
+              className="h-10 w-10 mr-1 mt-1 rounded-full cursor-pointer"
               src={logo}
               onClick={() => setSignOutbtn(!signOutbtn)}
               alt="user-profile"
             />
-          </div>
-        )}
-      </div>
-
-      {signOutbtn && (
+            {signOutbtn && (
         <button
-          className="absolute right-6 top-9 md:absolute md:right-6 md:top-16 bg-black border-2 p-2 mt-2 border-orange-500 rounded-[5px] text-white font-bold hover:bg-orange-500 hover:text-black cursor-pointer z-10"
+          className=" bg-black border-2 p-1 w-20 h-10 mt-1 border-orange-500 rounded-[5px] text-white font-medium hover:bg-orange-500 hover:text-black cursor-pointer z-10"
           onClick={handleSignout}
         >
           Sign Out
         </button>
       )}
+          </div>
+        )}
+      </div>
+
+      
     </>
   );
 };

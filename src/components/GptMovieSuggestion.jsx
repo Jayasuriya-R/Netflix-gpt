@@ -8,10 +8,12 @@ import MovieList from "./MovieList";
 const GptMovieSuggestion = () => {
   const searchTxt = useSelector((store) => store.gpt.searchInput);
   const dispatch = useDispatch();
-  const {movieName = [], movieApiRes = []} = useSelector((store ) => store.gpt?.gptResult || {})
-  
+  const { movieName = [], movieApiRes = [] } = useSelector(
+    (store) => store.gpt?.gptResult || {}
+  );
+
   // Get it free from groq.com
-  
+
   async function getMovieRecommendations(searchTxt) {
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions ",
@@ -19,7 +21,8 @@ const GptMovieSuggestion = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer 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",
+          Authorization:
+            "Bearer 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",
         },
         body: JSON.stringify({
           model: "meta-llama/llama-4-scout-17b-16e-instruct", // a big strong model
@@ -31,7 +34,7 @@ const GptMovieSuggestion = () => {
             },
             {
               role: "user",
-              content: `Only give me names of 5 movies ${searchTxt}, comma separated like the example result given ahead. Example Result: don, Maan Karate, Godfather, Kilukkam `,
+              content: `Only give me names of 7 movies ${searchTxt}, comma separated like the example result given ahead. Example Result: don, Maan Karate, Godfather, Kilukkam `,
             },
           ],
           temperature: 0.7,
@@ -55,12 +58,16 @@ const GptMovieSuggestion = () => {
 
   // getMovieRecommendations();
 
-  if(searchTxt == "") return null
+  if (searchTxt == "") return null;
   return (
     <div className="bg-gray-500/40 p-4 m-4 text-white">
-      { movieName.map((movieName,index) =>(
-      <MovieList key={movieName} title={movieName} movies={movieApiRes[index]}/>))
-}
+      {movieName.map((movieName, index) => (
+        <MovieList
+          key={movieName}
+          title={movieName}
+          movies={movieApiRes[index]}
+        />
+      ))}
     </div>
   );
 };

@@ -93,7 +93,7 @@ const Login = () => {
       <Header />
 
       <div className="absolute ">
-        <img
+        <img className="h-screen object-cover md:w-screen"
           src={netflixBg}
           alt="logo"
         />
@@ -101,7 +101,7 @@ const Login = () => {
 
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute p-12 bg-black/70 w-3/12 my-36 mx-auto right-0 left-0 flex flex-wrap rounded-lg text-white "
+        className="absolute w-9/12 p-12 bg-black/70 md:w-3/12  my-36 mx-auto right-0 left-0 flex flex-wrap rounded-lg text-white "
       >
         <h1 className=" m-2 mb-3 font-bold text-2xl">
           {isSignIn ? "Sign In" : "Sign Up"}

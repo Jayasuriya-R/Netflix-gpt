@@ -10,24 +10,24 @@ import { useSelector } from "react-redux";
 import getMovieRecommendations from "../utils/grogApi";
 
 const Browse = () => {
-  const showGptSearch = useSelector(store => store.gpt.showGptSearch)
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   //created a custom hook for this fetch request.
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovie();
   useUpcomingMovie();
-  
 
   return (
     <div>
       <Header />
-      {
-       showGptSearch ? <GptSearchPage/> :
-      <>
-      <MainConatiner />
-      <SecondaryConatiner />
-      </>
-}
+      {showGptSearch ? (
+        <GptSearchPage />
+      ) : (
+        <>
+          <MainConatiner />
+          <SecondaryConatiner />
+        </>
+      )}
     </div>
   );
 };

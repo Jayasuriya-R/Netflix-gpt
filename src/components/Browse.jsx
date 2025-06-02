@@ -8,9 +8,12 @@ import useUpcomingMovie from "../hooks/useUpcomingMovie";
 import GptSearchPage from "./GptSearchPage";
 import { useSelector } from "react-redux";
 import getMovieRecommendations from "../utils/grogApi";
+import LoadingIcon from "./LoadingIcon";
+
 
 const Browse = () => {
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const nowPlayingMovie = useSelector(store=> store.movie.nowPlayingMovie)
   //created a custom hook for this fetch request.
   useNowPlayingMovies();
   usePopularMovies();
@@ -19,16 +22,19 @@ const Browse = () => {
 
   return (
     <div>
-      <Header />
-      {showGptSearch ? (
-        <GptSearchPage />
-      ) : (
-        <>
-          <MainConatiner />
-          <SecondaryConatiner />
-        </>
-      )}
-    </div>
+  <Header />
+
+  {showGptSearch ? (
+    <GptSearchPage />
+  ) : !nowPlayingMovie ? (
+    <LoadingIcon/>
+  ) : (
+    <>
+      <MainConatiner />
+      <SecondaryConatiner />
+    </>
+  )}
+</div>
   );
 };
 

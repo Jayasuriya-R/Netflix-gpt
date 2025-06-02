@@ -4,10 +4,9 @@ import Browse from "./Browse";
 import { createBrowserRouter, useNavigate } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 
-import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
 
 const Body = () => {
+  
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -21,7 +20,8 @@ const Body = () => {
 
   return (
     <div>
-      <RouterProvider router={appRouter}></RouterProvider>
+      
+    <RouterProvider router={appRouter}></RouterProvider>
     </div>
   );
 };

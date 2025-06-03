@@ -16,6 +16,7 @@ const Header = () => {
   const navigate = useNavigate();
   const [signOutbtn, setSignOutbtn] = useState(false);
   const user = useSelector((store) => store.user);
+  const nowPlayingMovie = useSelector(store=> store.movie.nowPlayingMovie)
   const gptBtn = useSelector((store) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
 
@@ -56,7 +57,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="absolute px-8 w-screen py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between items-center">
+      <div className={`absolute px-8 w-screen py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between items-center`}>
         <img className="w-44 mx-auto md:mx-0" src={netflixLogo} alt="logo" />
 
         {user && (
